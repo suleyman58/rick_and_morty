@@ -1,33 +1,35 @@
-import React, { useState } from "react";
-import '../component.css'
+import React from "react";
+import './component.css'; 
 
-const DropdownComponent = ({
-  label,
-  setFilterName,
-  filterName,
-  options
-}: {
+interface DropdownProps {
   label: string;
   setFilterName: (value: string) => void;
   filterName: string;
   options: string[];
+}
+
+const DropdownComponent: React.FC<DropdownProps> = ({
+  label,
+  setFilterName,
+  filterName,
+  options
 }) => {
 
-    console.log("filterName",filterName )
-    
- 
+  console.log("filterName", filterName);
+
   return (
-    <div>
-      <label style={{ margin: "0px 10px" }}>{label}</label>
+    <div className="dropdown-container">
+      <label htmlFor="dropdown" className="dropdown-label">{label}</label>
       <select
+        id="dropdown"
         value={filterName}
-        className="select"
+        className="dropdown-select"
         onChange={(e) => {
-          const value = e.target.value; // Seçilen değeri al
-          setFilterName(value); // filterName'i seçilen değer ile güncelle
+          const value = e.target.value;
+          setFilterName(value);
         }}
       >
-      {options.map((option, index) => (
+        {options.map((option, index) => (
           <option key={index} value={option}>
             {option}
           </option>

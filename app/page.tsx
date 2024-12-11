@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { getCharacter, getCharacterByGender, getCharacterByMultiFilter, getCharacterByPageNumber, getCharacterByStatus } from "@/component/actions/Actions";
 import { useEffect, useState } from "react";
 import './page.css';
@@ -11,7 +11,7 @@ interface Character {
   gender: string;
   status: string;
   image: string;
-  [key: string]: any; // Diğer tüm key-value'lar için serbest alan
+  [key: string]: string | number; 
 }
 
 interface Info {
@@ -24,9 +24,8 @@ interface CharacterData {
   results: Character[];
 }
 
-
 export default function Home() {
-  const [characterData, setCharacterData] = useState<CharacterData | undefined>(undefined);
+  const [characterData, setCharacterData] = useState<CharacterData | null>(null); 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filterStatus, setFilterStatus] = useState<string>('Yok');
@@ -62,11 +61,6 @@ export default function Home() {
 
   const handleSearch = async () => {
     try {
-      console.log("tıklandı2");
-
-      console.log("filterStatus type:", filterStatus);
-      console.log("filterGender type:", filterGender);
-
       let data;
       if (filterStatus === 'Yok' && filterGender === 'Yok') {
         console.log("Filtre yok, işlem yapılmadı");
@@ -79,8 +73,6 @@ export default function Home() {
       } else if ((filterStatus === 'Sağ' || filterStatus === 'Ölü') && (filterGender === 'Kadın' || filterGender === 'Erkek')) {
         console.log("Filtre: Hem Gender Hem Status aktif");
         data = await getCharacterByMultiFilter(filterGender, filterStatus);
-      } else {
-        console.log("Hiçbir koşula girmedi");
       }
 
       if (data) {
@@ -93,16 +85,13 @@ export default function Home() {
     }
   };
 
-  // Sayfa butonları için gruplama ve '...' ekleme
   const renderPageButtons = () => {
-    const totalPages = characterData?.info?.pages ?? 0; // Eğer undefined ise 0 olarak kabul edilir.
+    const totalPages = characterData?.info?.pages ?? 0; 
     const buttons = [];
 
-    // Butonları göstermek için başlat ve bitiş sayfasını hesapla
-    const start = Math.max(1, currentPage - 2); // Başlangıç sayfası
-    const end = Math.min(totalPages, currentPage + 2); // Bitiş sayfası
+    const start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, currentPage + 2);
 
-    // Eğer mevcut sayfa başta veya sonunda ise, aradaki boşlukları kısaltmak için "..."
     if (start > 1) {
       buttons.push(1);
       if (start > 2) buttons.push("...");
@@ -115,7 +104,6 @@ export default function Home() {
       buttons.push(totalPages);
     }
 
-    // Sayfa butonları
     return buttons.map((page, index) => (
       <button
         key={index}
@@ -141,7 +129,7 @@ export default function Home() {
     <div>
       {isLoading ? (
         <p>Yükleniyor...</p>
-      ) : characterData?.info?.pages ? (
+      ) : characterData ? (
         <>
           <h6
             style={{
@@ -182,7 +170,7 @@ export default function Home() {
           </div>
 
           <div className="mainPageListItem">
-            {characterData.results?.map((character: Character, index: number) => (
+            {characterData.results?.map((character, index) => (
               <div key={index} className="characterContainer">
                 <h2>İsim {character.name}</h2>
                 <p>Cinsiyet {character.gender}</p>
@@ -200,7 +188,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Sayfalama Butonları */}
           <div style={{
             margin: '20px 0px',
             display: 'flex',

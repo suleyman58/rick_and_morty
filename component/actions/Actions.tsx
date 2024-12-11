@@ -9,18 +9,18 @@ export const getCharacter = async () => {
     try {
         const response = await fetch(url, options);
 
-        // Yanıt başarısızsa hata fırlat
         if (!response.ok) {
-            throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            throw new Error(`Failed to fetch character data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return data; // Veriyi döndür
+        return data;
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        throw error; // Hata fırlatmaya devam et
+        console.error('Error fetching character data:', error);
+        throw error; 
     }
 };
+
 export const getCharacterByPageNumber = async (pageNumber: number) => {
     const url = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
 
@@ -32,22 +32,21 @@ export const getCharacterByPageNumber = async (pageNumber: number) => {
     try {
         const response = await fetch(url, options);
 
-        // Yanıt başarısızsa hata fırlat
         if (!response.ok) {
-            throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            throw new Error(`Failed to fetch character data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return data; // Veriyi döndür
+        return data; 
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        throw error; // Hata fırlatmaya devam et
+        console.error('Error fetching character data:', error);
+        throw error; 
     }
 };
 
 export const getCharacterByStatus = async (value: string) => {
-    const status = value === 'Sağ' ? 'Alive' : 'Dead'
-    console.log("status", status)
+    const status = value === 'Sağ' ? 'Alive' : 'Dead';
+    console.log("status", status);
     const url = `https://rickandmortyapi.com/api/character/?status=${status}`;
 
     const options: RequestInit = {
@@ -58,20 +57,20 @@ export const getCharacterByStatus = async (value: string) => {
     try {
         const response = await fetch(url, options);
 
-        // Yanıt başarısızsa hata fırlat
         if (!response.ok) {
-            throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            throw new Error(`Failed to fetch character data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return data; // Veriyi döndür
+        return data; 
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        throw error; // Hata fırlatmaya devam et
+        console.error('Error fetching character data:', error);
+        throw error; 
     }
 };
+
 export const getCharacterByGender = async (value: string) => {
-    const gender = value === 'Kadın' ? 'Female' : 'Male'
+    const gender = value === 'Kadın' ? 'Female' : 'Male';
     const url = `https://rickandmortyapi.com/api/character/?gender=${gender}`;
 
     const options: RequestInit = {
@@ -82,16 +81,16 @@ export const getCharacterByGender = async (value: string) => {
     try {
         const response = await fetch(url, options);
 
-        // Yanıt başarısızsa hata fırlat
+
         if (!response.ok) {
-            throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            throw new Error(`Failed to fetch character data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return data; // Veriyi döndür
+        return data; 
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        throw error; // Hata fırlatmaya devam et
+        console.error('Error fetching character data:', error);
+        throw error; 
     }
 };
 
@@ -109,18 +108,15 @@ export const getCharacterByMultiFilter = async (genderValue: string, statusValue
     try {
         const response = await fetch(url, options);
 
-        // Yanıt başarısızsa hata fırlat
+
         if (!response.ok) {
-            throw new Error(`Failed to fetch weather data: ${response.statusText}`);
+            throw new Error(`Failed to fetch character data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return data; // Veriyi döndür
+        return data; 
     } catch (error) {
-        console.error('Error fetching weather data:', error);
-        throw error; // Hata fırlatmaya devam et
+        console.error('Error fetching character data:', error);
+        throw error; 
     }
 };
-
-
-
