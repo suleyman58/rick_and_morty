@@ -3,9 +3,10 @@ import { getCharacter, getCharacterByGender, getCharacterByMultiFilter, getChara
 import { useEffect, useState } from "react";
 import './page.css';
 import DropdownComponent from "@/component/dropdown/DropdownComponent";
+import Image from "next/image";
 
 export default function Home() {
-  const [characterData, setCharacterData] = useState<any>({});
+  const [characterData, setCharacterData] = useState<object>({});
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filterStatus, setFilterStatus] = useState<string>('Yok');
@@ -76,11 +77,10 @@ export default function Home() {
   const renderPageButtons = () => {
     const totalPages = characterData?.info?.pages;
     const buttons = [];
-    const maxButtons = 5; // Görünecek maksimum buton sayısı
 
     // Butonları göstermek için başlat ve bitiş sayfasını hesapla
-    let start = Math.max(1, currentPage - 2); // Başlangıç sayfası
-    let end = Math.min(totalPages, currentPage + 2); // Bitiş sayfası
+    const start = Math.max(1, currentPage - 2); // Başlangıç sayfası
+    const end = Math.min(totalPages, currentPage + 2); // Bitiş sayfası
 
     // Eğer mevcut sayfa başta veya sonunda ise, aradaki boşlukları kısaltmak için "..."
     if (start > 1) {
@@ -162,17 +162,18 @@ export default function Home() {
           </div>
 
           <div className="mainPageListItem">
-            {characterData.results?.map((character: any, index: number) => (
+            {characterData.results?.map((character: object, index: number) => (
               <div key={index} className="characterContainer">
                 <h2>İsim {character.name}</h2>
                 <p>Cinsiyet {character.gender}</p>
                 <p>Durum: {character.status}</p>
                 <p>Id: {character.id}</p>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                  <img
+                  <Image
                     src={character.image}
                     alt={character.name}
-                    style={{ width: '250px' }}
+                    width={250}
+                    height={250}
                   />
                 </div>
               </div>
