@@ -63,7 +63,7 @@ export default function Home() {
     try {
       let data;
       if (filterStatus === 'Yok' && filterGender === 'Yok') {
-        console.log("Filtre yok, işlem yapılmadı");
+        data = await getCharacter();
       } else if (filterStatus === 'Yok' && (filterGender === 'Kadın' || filterGender === 'Erkek')) {
         console.log("Filtre: Gender aktif");
         data = await getCharacterByGender(filterGender);
