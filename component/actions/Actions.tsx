@@ -1,4 +1,4 @@
-export const getCharacter = async (city: string, apiKey: string) => {
+export const getCharacter = async () => {
     const url = `https://rickandmortyapi.com/api/character`;
 
     const options: RequestInit = {

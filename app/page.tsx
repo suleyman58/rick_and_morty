@@ -5,8 +5,28 @@ import './page.css';
 import DropdownComponent from "@/component/dropdown/DropdownComponent";
 import Image from "next/image";
 
+interface Character {
+  id: number;
+  name: string;
+  gender: string;
+  status: string;
+  image: string;
+  [key: string]: any; // Diğer tüm key-value'lar için serbest alan
+}
+
+interface Info {
+  pages: number;
+  count: number;
+}
+
+interface CharacterData {
+  info: Info;
+  results: Character[];
+}
+
+
 export default function Home() {
-  const [characterData, setCharacterData] = useState<object>({});
+  const [characterData, setCharacterData] = useState<CharacterData | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filterStatus, setFilterStatus] = useState<string>('Yok');
@@ -75,7 +95,7 @@ export default function Home() {
 
   // Sayfa butonları için gruplama ve '...' ekleme
   const renderPageButtons = () => {
-    const totalPages = characterData?.info?.pages;
+    const totalPages = characterData?.info?.pages ?? 0; // Eğer undefined ise 0 olarak kabul edilir.
     const buttons = [];
 
     // Butonları göstermek için başlat ve bitiş sayfasını hesapla
@@ -162,7 +182,7 @@ export default function Home() {
           </div>
 
           <div className="mainPageListItem">
-            {characterData.results?.map((character: object, index: number) => (
+            {characterData.results?.map((character: Character, index: number) => (
               <div key={index} className="characterContainer">
                 <h2>İsim {character.name}</h2>
                 <p>Cinsiyet {character.gender}</p>
