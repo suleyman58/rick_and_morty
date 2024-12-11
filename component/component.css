@@ -1,0 +1,54 @@
+.switch-container {
+    margin-bottom: 20px;
+  }
+  
+  .switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  
+  .switch-toggle {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  
+  .switch.on .switch-toggle {
+    transform: translateX(30px);
+    background-color: #4caf50;
+  }
+  
+  label {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  select {
+    border: 2px solid #ccc; /* Border ekler */
+    background-color: #f0f0f0; /* Arka plan rengini hafif koyulaştır */
+    padding: 8px 12px; /* İç boşluk ekler */
+    font-size: 14px; /* Yazı boyutu */
+    border-radius: 4px; /* Köşeleri yuvarlar */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Hover efekti için geçiş ekler */
+  }
+  
+  select:hover {
+    background-color: #e0e0e0; /* Hover sırasında arka planı biraz daha koyulaştır */
+    border-color: #888; /* Hover sırasında border rengini koyulaştır */
+  }
+  
+  select:focus {
+    outline: none; /* Focusa girdiğinde outline'ı kaldırır */
+    background-color: #e0e0e0; /* Focusta arka plan rengini koyulaştırır */
+    border-color: #888; /* Focusta border rengini koyulaştırır */
+  }
+  

@@ -1,0 +1,29 @@
+.mainPageListItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    justify-items: center;
+  }
+
+  .characterContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  }
+
+  .searchButton{
+    padding: 10px;
+    background-color: rgb(89, 237, 89);
+    margin: 0px 10px;
+    border-radius: 10px;
+   
+  }
+  .searchButton:hover{
+    background-color: rgb(119, 191, 119);
+  }
